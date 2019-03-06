@@ -12,7 +12,7 @@ import SpoManager from './components/SpoManager';
 import { ISpoManagerProps } from './components/ISpoManagerProps';
 
 export interface ISpoManagerWebPartProps {
-  description: string;
+  scope: string;
 }
 
 export default class SpoManagerWebPart extends BaseClientSideWebPart<ISpoManagerWebPartProps> {
@@ -21,7 +21,8 @@ export default class SpoManagerWebPart extends BaseClientSideWebPart<ISpoManager
     const element: React.ReactElement<ISpoManagerProps > = React.createElement(
       SpoManager,
       {
-        description: this.properties.description
+        scope: this.properties.scope,
+        spHttpClient: this.context.spHttpClient
       }
     );
 

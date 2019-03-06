@@ -1,3 +1,6 @@
+import { SPHttpClient } from "@microsoft/sp-http";
+
 export interface ISpoManagerProps {
-  description: string;
+  scope: string;
+  spHttpClient: SPHttpClient;
 }
