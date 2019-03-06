@@ -8,7 +8,7 @@ export const sites: any =
 export const contosoWebs: any = [
     {"url":"https://contoso.sharepoint.com/sites/contoso","title":"contoso web"}
 ];
-
+ 
 export const testWebs: any =
 [
     {"url":"https://contoso.sharepoint.com/sites/test/blog","title":"blog web"},
