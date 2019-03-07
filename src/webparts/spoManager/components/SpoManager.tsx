@@ -6,7 +6,7 @@ import SpoContainer from './SpoContainer';
 
 import { TreeUtils } from '../utility/TreeUtils';
 
-const root = TreeUtils.initRoot(this.props.scope);
+//const root = TreeUtils.initRoot(this.props.scope);
 
 export default class SpoManager extends React.Component<ISpoManagerProps, {}> {
   public render(): React.ReactElement<ISpoManagerProps> {

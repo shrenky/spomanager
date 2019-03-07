@@ -18,7 +18,7 @@ export interface ISpoManagerWebPartProps {
 export default class SpoManagerWebPart extends BaseClientSideWebPart<ISpoManagerWebPartProps> {
 
   public render(): void {
-    this.properties.scope = this.properties.scope || 'Tenant'; //set default scope
+    //this.properties.scope = this.properties.scope || 'Tenant'; //set default scope
     const element: React.ReactElement<ISpoManagerProps > = React.createElement(
       SpoManager,
       {
