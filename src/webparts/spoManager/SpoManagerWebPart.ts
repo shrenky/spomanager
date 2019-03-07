@@ -53,8 +53,8 @@ export default class SpoManagerWebPart extends BaseClientSideWebPart<ISpoManager
                   label: strings.DescriptionFieldLabel,
                   options: [
                     {text: strings.ScopeTenant, key: 'Tenant'},
-                    {text: strings.ScopeSiteCollection, key: 'SiteCollection'},
                     {text: strings.ScopeSite, key: 'Site'},
+                    {text: strings.ScopeSite, key: 'Web'},
                   ],
                   selectedKey: 'Tenant'
                 })

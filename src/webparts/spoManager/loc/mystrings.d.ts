@@ -3,8 +3,8 @@ declare interface ISpoManagerWebPartStrings {
   BasicGroupName: string;
   DescriptionFieldLabel: string;
   ScopeTenant: string;
-  ScopeSiteCollection: string;
   ScopeSite: string;
+  ScopeWeb: string;
 }
 
 declare module 'SpoManagerWebPartStrings' {

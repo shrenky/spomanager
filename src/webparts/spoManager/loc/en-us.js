@@ -4,7 +4,7 @@ define([], function() {
     "BasicGroupName": "Select Scope",
     "DescriptionFieldLabel": "Scope",
     "ScopeTenant": "Tenant",
-    "ScopeSiteCollection" : "Site Collection",
-    "ScopeSite": "Site"
+    "ScopeSite" : "Site",
+    "ScopeWeb": "Web"
   }
 });

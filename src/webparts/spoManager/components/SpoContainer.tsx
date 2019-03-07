@@ -11,7 +11,7 @@ export default class SpoContainer extends React.Component<ISpoContainerProps, {}
     return (
       <div className={ styles.spoContainer }>
         <div className={styles.spoNavbar}>
-            Nav Bar 
+            {this.props.children}
         </div>
         <div className={styles.spoPropsPanel}>
             Properties

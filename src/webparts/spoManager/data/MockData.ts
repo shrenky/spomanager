@@ -1,3 +1,5 @@
+export const tenant: any = {"url":"https://contoso.sharepoint.com","title":"contoso"};
+
 export const sites: any = 
 [
   {"url":"https://contoso.sharepoint.com","title":"contoso"},
