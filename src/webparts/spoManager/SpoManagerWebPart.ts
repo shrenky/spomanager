@@ -4,7 +4,7 @@ import { Version } from '@microsoft/sp-core-library';
 import {
   BaseClientSideWebPart,
   IPropertyPaneConfiguration,
-  PropertyPaneTextField
+  PropertyPaneDropdown
 } from '@microsoft/sp-webpart-base';
 
 import * as strings from 'SpoManagerWebPartStrings';
@@ -18,6 +18,7 @@ export interface ISpoManagerWebPartProps {
 export default class SpoManagerWebPart extends BaseClientSideWebPart<ISpoManagerWebPartProps> {
 
   public render(): void {
+    this.properties.scope = this.properties.scope || 'Tenant'; //set default scope
     const element: React.ReactElement<ISpoManagerProps > = React.createElement(
       SpoManager,
       {
@@ -48,8 +49,14 @@ export default class SpoManagerWebPart extends BaseClientSideWebPart<ISpoManager
             {
               groupName: strings.BasicGroupName,
               groupFields: [
-                PropertyPaneTextField('description', {
-                  label: strings.DescriptionFieldLabel
+                PropertyPaneDropdown('scope', {
+                  label: strings.DescriptionFieldLabel,
+                  options: [
+                    {text: strings.ScopeTenant, key: 'Tenant'},
+                    {text: strings.ScopeSiteCollection, key: 'SiteCollection'},
+                    {text: strings.ScopeSite, key: 'Site'},
+                  ],
+                  selectedKey: 'Tenant'
                 })
               ]
             }

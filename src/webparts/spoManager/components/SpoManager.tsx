@@ -7,7 +7,10 @@ import SpoContainer from './SpoContainer';
 export default class SpoManager extends React.Component<ISpoManagerProps, {}> {
   public render(): React.ReactElement<ISpoManagerProps> {
     return (
-      <SpoContainer />
+      <div>
+        <SpoContainer />
+        <span>{this.props.scope}</span>
+      </div>
     );
   }
 }

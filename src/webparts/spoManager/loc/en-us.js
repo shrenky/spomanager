@@ -1,7 +1,10 @@
 define([], function() {
   return {
-    "PropertyPaneDescription": "Description",
-    "BasicGroupName": "Group Name",
-    "DescriptionFieldLabel": "Description Field"
+    "PropertyPaneDescription": "Scope",
+    "BasicGroupName": "Select Scope",
+    "DescriptionFieldLabel": "Scope",
+    "ScopeTenant": "Tenant",
+    "ScopeSiteCollection" : "Site Collection",
+    "ScopeSite": "Site"
   }
 });
