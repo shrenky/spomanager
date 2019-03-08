@@ -13,9 +13,15 @@ import { NODE_TYPE } from '../interfaces/NodeType';
 import * as actions from '../actions/Actions';
 
 export interface INodeStateProps {
-    type: NODE_TYPE;
     id: number;
-    child
+    type: NODE_TYPE;
+    url: string;
+    title: string;
+    childIds: number[];
+    expanded: boolean;
+    isSelected: boolean;
+
+    isLoading: boolean;
 }
 
 export interface INodeDispatchProps {
@@ -35,8 +41,18 @@ export class Node extends React.Component<INodeStateProps & INodeDispatchProps> 
     }
 
     public render() {
+        const { childIds, url, title, expanded, isSelected } = this.props;
         return (
-            <div>Render in Connected Node!</div>
+            <div>
+                <Icon style={{cursor:'pointer'}} iconName={ expanded ? 'CollapseContentSingle' : 'ExploreContentSingle' }/>
+                {' '}
+                {url}
+                {
+                    this.props.isLoading ? 
+                        <Spinner type={SpinnerType.normal} size={SpinnerSize.small} /> :
+                        childIds.map(this.renderChild)
+                }
+            </div>
         );
     }
 }
