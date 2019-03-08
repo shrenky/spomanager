@@ -9,6 +9,19 @@ import { TreeUtils } from '../utility/TreeUtils';
 //const root = TreeUtils.initRoot(this.props.scope);
 
 export default class SpoManager extends React.Component<ISpoManagerProps, {}> {
+  private root: any;
+  private store: any;
+
+  constructor(props) {
+    super(props);
+
+  }
+
+  public componentWillMount() {
+    this.root = TreeUtils.initRoot(this.props.scope);
+    console.log(this.root);
+  }
+
   public render(): React.ReactElement<ISpoManagerProps> {
     return (
       <div>
