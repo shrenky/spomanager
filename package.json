@@ -12,16 +12,21 @@
     "test:watch": "./node_modules/.bin/jest --config ./config/jest.config.json --watchAll"
   },
   "dependencies": {
-    "react": "16.3.2",
-    "react-dom": "16.3.2",
-    "@types/react": "16.4.2",
-    "@types/react-dom": "16.0.5",
     "@microsoft/sp-core-library": "1.7.0",
-    "@microsoft/sp-webpart-base": "1.7.0",
     "@microsoft/sp-lodash-subset": "1.7.0",
     "@microsoft/sp-office-ui-fabric-core": "1.7.0",
+    "@microsoft/sp-webpart-base": "1.7.0",
+    "@types/es6-promise": "0.0.33",
+    "@types/react": "16.4.2",
+    "@types/react-dom": "16.0.5",
     "@types/webpack-env": "1.13.1",
-    "@types/es6-promise": "0.0.33"
+    "react": "16.3.2",
+    "react-dom": "16.3.2",
+    "react-redux": "^6.0.1",
+    "redux": "^4.0.1",
+    "redux-logger": "^3.0.6",
+    "redux-promise-middleware": "^6.1.0",
+    "redux-thunk": "^2.3.0"
   },
   "devDependencies": {
     "@microsoft/sp-build-web": "1.7.0",
