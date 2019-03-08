@@ -1,3 +1,5 @@
+import { NODE_TYPE } from "../interfaces/NodeType";
+
 export class TreeUtils {
     public static nextNodeId = 1;
     public static getNextNodeId() {
@@ -21,13 +23,4 @@ export class TreeUtils {
         };
         return rootNode;
     }
-}
-
-export enum NODE_TYPE {
-    TENANT,
-    SITE,
-    WEB,
-    LIST,
-    FIELD,
-    VIEW
 }

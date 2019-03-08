@@ -23,7 +23,7 @@ export default class SpoManagerWebPart extends BaseClientSideWebPart<ISpoManager
       SpoManager,
       {
         scope: this.properties.scope,
-        spHttpClient: this.context.spHttpClient
+        context: this.context
       }
     );
 

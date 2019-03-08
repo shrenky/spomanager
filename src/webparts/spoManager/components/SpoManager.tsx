@@ -20,6 +20,7 @@ export default class SpoManager extends React.Component<ISpoManagerProps, {}> {
   public componentWillMount() {
     this.root = TreeUtils.initRoot(this.props.scope);
     console.log(this.root);
+    console.log(this.props.context);
   }
 
   public render(): React.ReactElement<ISpoManagerProps> {
