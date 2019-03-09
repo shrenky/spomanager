@@ -41,12 +41,13 @@ export class Node extends React.Component<INodeStateProps & INodeDispatchProps> 
     }
 
     public render() {
-        const { childIds, url, title, expanded, isSelected } = this.props;
+        const {id, childIds, url, title, expanded, isSelected } = this.props;
+        const nodeText = this.getNodeText();
         return (
             <div>
                 <Icon style={{cursor:'pointer'}} iconName={ expanded ? 'CollapseContentSingle' : 'ExploreContentSingle' }/>
                 {' '}
-                {url}
+                {nodeText}
                 {
                     this.props.isLoading ? 
                         <Spinner type={SpinnerType.normal} size={SpinnerSize.small} /> :
@@ -54,6 +55,17 @@ export class Node extends React.Component<INodeStateProps & INodeDispatchProps> 
                 }
             </div>
         );
+    }
+
+    private getNodeText() {
+        const { id, type, url } = this.props;
+        if( id === 1 && type === NODE_TYPE.TENANT){ //root node, return text if tenant scope
+            return 'Tenant';
+        }
+        else
+        {
+            return url;
+        }
     }
 }
 

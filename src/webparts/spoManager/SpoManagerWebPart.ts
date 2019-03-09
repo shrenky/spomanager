@@ -32,7 +32,7 @@ export default class SpoManagerWebPart extends BaseClientSideWebPart<ISpoManager
   protected onDispose(): void {
     ReactDom.unmountComponentAtNode(this.domElement);
   }
-
+  
   protected get dataVersion(): Version {
     return Version.parse('1.0');
   }
@@ -53,7 +53,7 @@ export default class SpoManagerWebPart extends BaseClientSideWebPart<ISpoManager
                   options: [
                     {text: strings.ScopeTenant, key: 'Tenant'},
                     {text: strings.ScopeSite, key: 'Site'},
-                    {text: strings.ScopeSite, key: 'Web'},
+                    {text: strings.ScopeWeb, key: 'Web'},
                   ],
                   selectedKey: 'Tenant'
                 })
