@@ -45,7 +45,8 @@ export class Node extends React.Component<INodeStateProps & INodeDispatchProps> 
         return (
             <div>
                 <Icon style={{cursor:'pointer'}} iconName={ expanded ? 'CollapseContentSingle' : 'ExploreContentSingle' }/>
-                {' '}
+                {'-'}
+                <img className={Styles.FileTypeIconIcon} alt="" src="/_layouts/15/images/SharePointFoundation16.png"></img>
                 {title}
                 {
                     this.props.isLoading ? 
