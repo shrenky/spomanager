@@ -1,5 +1,10 @@
 import * as React from 'react';
 import * as ReactDom from 'react-dom';
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
+import promiseMiddleware from 'redux-promise-middleware';
+import logger from 'redux-logger';
+
 import { Version } from '@microsoft/sp-core-library';
 import {
   BaseClientSideWebPart,
@@ -10,6 +15,8 @@ import {
 import * as strings from 'SpoManagerWebPartStrings';
 import SpoManager from './components/SpoManager';
 import { ISpoManagerProps } from './components/ISpoManagerProps';
+import { TreeUtils } from './utility/TreeUtils';
+import reducer from './reducers/Reducers';
 
 export interface ISpoManagerWebPartProps {
   scope: string;
@@ -18,11 +25,14 @@ export interface ISpoManagerWebPartProps {
 export default class SpoManagerWebPart extends BaseClientSideWebPart<ISpoManagerWebPartProps> {
 
   public render(): void {
+    const root = TreeUtils.initRoot(this.properties.scope);
+    const store = createStore(reducer, root as any, applyMiddleware(thunk, promiseMiddleware, logger));
     const element: React.ReactElement<ISpoManagerProps > = React.createElement(
       SpoManager,
       {
         scope: this.properties.scope,
-        context: this.context
+        context: this.context,
+        store: store
       }
     );
 
