@@ -25,7 +25,7 @@ export interface ISpoManagerWebPartProps {
 export default class SpoManagerWebPart extends BaseClientSideWebPart<ISpoManagerWebPartProps> {
 
   public render(): void {
-    const root = TreeUtils.initRoot(this.properties.scope);
+    const root = TreeUtils.initRoot(this.properties.scope, this.context);
     const store = createStore(reducer, root as any, applyMiddleware(thunk, promiseMiddleware, logger));
     const element: React.ReactElement<ISpoManagerProps > = React.createElement(
       SpoManager,
