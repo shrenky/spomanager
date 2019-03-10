@@ -2,6 +2,11 @@
     display: block;
 }
 
+.FileTypeIcon {
+    vertical-align: middle;
+    cursor: pointer;
+}
+
 .FileTypeIconIcon {
     display: inline-block;
     vertical-align: middle;
@@ -9,4 +14,9 @@
     overflow: hidden;
     width: 16px;
     height: 16px;
+}
+
+.NodeTitle {
+    vertical-align: middle;
+    padding-left: 5px;
 }

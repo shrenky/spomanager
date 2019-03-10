@@ -28,10 +28,10 @@ export class TreeUtils {
     private static getTitle(scope: string, context: any) {
         if(scope == 'Tenant') {
             const url = `${window.location.protocol}//${window.location.hostname}`;
-            return `Tenant (${url})`;
+            return `Tenant`;
         }
         else if (scope == 'Site') {
-            return context.pageContext.site.absoluteUrl; //`~ ${context.pageContext.site.serverRelativeUrl}`;
+            return `~${context.pageContext.site.serverRelativeUrl}`;//context.pageContext.site.absoluteUrl;
         }
         else {
             return context.pageContext.web.title;

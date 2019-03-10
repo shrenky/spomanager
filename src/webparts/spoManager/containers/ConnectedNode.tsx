@@ -29,6 +29,10 @@ export interface INodeDispatchProps {
 }
 
 export class Node extends React.Component<INodeStateProps & INodeDispatchProps> {
+    private readonly COLLAPSEICONNAME: string = 'CollapseContentSingle';
+    private readonly ExploreICONNAME: string = 'ExploreContentSingle';
+    private readonly SITEICONURL: string = "/_layouts/15/images/SharePointFoundation16.png";
+
     constructor(props) {
         super(props);
     }
@@ -44,10 +48,10 @@ export class Node extends React.Component<INodeStateProps & INodeDispatchProps> 
         const {id, childIds, url, title, expanded, isSelected } = this.props;
         return (
             <div>
-                <Icon style={{cursor:'pointer'}} iconName={ expanded ? 'CollapseContentSingle' : 'ExploreContentSingle' }/>
+                <Icon className={Styles.FileTypeIcon} iconName={ expanded ?  this.COLLAPSEICONNAME: this.ExploreICONNAME }/>
                 {'-'}
-                <img className={Styles.FileTypeIconIcon} alt="" src="/_layouts/15/images/SharePointFoundation16.png"></img>
-                {title}
+                <img className={Styles.FileTypeIconIcon} alt="" src={this.SITEICONURL}></img>
+                <span className={Styles.NodeTitle}>{title}</span>
                 {
                     this.props.isLoading ? 
                         <Spinner type={SpinnerType.normal} size={SpinnerSize.small} /> :
