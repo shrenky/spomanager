@@ -20,12 +20,16 @@ export interface INodeStateProps {
     childIds: number[];
     expanded: boolean;
     isSelected: boolean;
+    client: any;
 
-    isLoading: boolean;
+    isPending: boolean;
+    isFulfilled: boolean;
+    isRejected: boolean;
 }
 
 export interface INodeDispatchProps {
-
+    expand_collapse_node(id);
+    fetch_site(id, client, url);
 }
 
 export class Node extends React.Component<INodeStateProps & INodeDispatchProps> {
@@ -35,12 +39,13 @@ export class Node extends React.Component<INodeStateProps & INodeDispatchProps> 
 
     constructor(props) {
         super(props);
+        this.onExpandNode = this.onExpandNode.bind(this);
     }
 
     public renderChild = childId => {
         const { id } = this.props;
         return (
-            <ConnectedNode id={childId} parentId={id} />
+            <ConnectedNode id={childId} parentId={id} client={this.props.client}/>
         );
     }
 
@@ -48,17 +53,31 @@ export class Node extends React.Component<INodeStateProps & INodeDispatchProps> 
         const {id, childIds, url, title, expanded, isSelected } = this.props;
         return (
             <div>
-                <Icon className={Styles.FileTypeIcon} iconName={ expanded ?  this.COLLAPSEICONNAME: this.ExploreICONNAME }/>
+                <Icon className={Styles.FileTypeIcon} iconName={ expanded ?  this.COLLAPSEICONNAME: this.ExploreICONNAME } onClick={this.onExpandNode}/>
                 {'-'}
                 <img className={Styles.FileTypeIconIcon} alt="" src={this.SITEICONURL}></img>
                 <span className={Styles.NodeTitle}>{title}</span>
-                {
-                    this.props.isLoading ? 
-                        <Spinner type={SpinnerType.normal} size={SpinnerSize.small} /> :
-                        childIds.map(this.renderChild)
-                }
+                <div className={expanded ? Styles.NodeExpanded : Styles.NodeCollapsed}>
+                    {
+                        this.props.isPending ? 
+                            <Spinner type={SpinnerType.normal} size={SpinnerSize.small} /> :
+                            childIds.map(this.renderChild)
+                    }
+                </div>
+                
             </div>
         );
+    }
+
+    private onExpandNode() {
+        const { client, fetch_site, id, url, title, isPending, isFulfilled, isRejected, expand_collapse_node } = this.props;
+        if(this.props.type === NODE_TYPE.TENANT) {
+            if(!(isPending || isFulfilled || isRejected)) {
+                fetch_site(id, client, url);
+            }
+        }
+
+        expand_collapse_node(id);
     }
 }
 

@@ -35,7 +35,7 @@ export default class SpoManager extends React.Component<ISpoManagerProps, {}> {
     return (
       <Provider store={this.props.store}>
         <SpoContainer>
-          <ConnectedNode id={1} />
+          <ConnectedNode id={1} client={this.props.context.spHttpClient}/>
         </SpoContainer>
       </Provider>
     );

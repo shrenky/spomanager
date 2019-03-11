@@ -18,6 +18,9 @@ export class TreeUtils {
                 childIds: [],
                 expanded: false,
                 isSelected: false,
+                isPending: false,
+                isFulfilled: false,
+                isRejected: false,
 
                 properties: {}
             }

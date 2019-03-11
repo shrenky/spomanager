@@ -1,4 +1,5 @@
 export const INIT = 'INIT';
+export const EXPAND_COLLAPSE_NODE = 'EXPAND_COLLAPSE_NODE';
 export const CREATE_NODE = 'CREATE_NODE';
 
 export const FETCH_SITE = 'FETCH_SITE';
