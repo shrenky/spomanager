@@ -9,8 +9,6 @@ import styles from './SpoManager.module.scss';
 import { ISpoManagerProps } from './ISpoManagerProps';
 import { escape } from '@microsoft/sp-lodash-subset';
 import SpoContainer from './SpoContainer';
-import { TreeUtils } from '../utility/TreeUtils';
-import reducer from '../reducers/Reducers';
 import ConnectedNode from '../containers/ConnectedNode';
 
 import {

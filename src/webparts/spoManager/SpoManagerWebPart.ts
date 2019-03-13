@@ -16,7 +16,7 @@ import * as strings from 'SpoManagerWebPartStrings';
 import SpoManager from './components/SpoManager';
 import { ISpoManagerProps } from './components/ISpoManagerProps';
 import { TreeUtils } from './utility/TreeUtils';
-import reducer from './reducers/Reducers';
+import reducer from './reducers/TreeReducer';
 
 export interface ISpoManagerWebPartProps {
   scope: string;
