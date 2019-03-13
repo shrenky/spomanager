@@ -30,6 +30,7 @@ export interface INodeStateProps {
 export interface INodeDispatchProps {
     expand_collapse_node(id);
     fetch_site(id, client, url);
+    fetch_web(id, client, url);
 }
 
 export class Node extends React.Component<INodeStateProps & INodeDispatchProps> {
@@ -70,10 +71,16 @@ export class Node extends React.Component<INodeStateProps & INodeDispatchProps> 
     }
 
     private onExpandNode() {
-        const { client, fetch_site, id, url, title, isPending, isFulfilled, isRejected, expand_collapse_node } = this.props;
+        const { client, fetch_site, fetch_web, id, url, title, isPending, isFulfilled, isRejected, expand_collapse_node } = this.props;
         if(this.props.type === NODE_TYPE.TENANT) {
             if(!(isPending || isFulfilled || isRejected)) {
                 fetch_site(id, client, url);
+            }
+        }
+
+        if(this.props.type === NODE_TYPE.SITE) {
+            if(!(isPending || isFulfilled || isRejected)) {
+                fetch_web(id, client, url);
             }
         }
 

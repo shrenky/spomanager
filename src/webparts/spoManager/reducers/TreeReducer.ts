@@ -14,7 +14,7 @@ export default (state = {}, action) => {
         currentNodeId = meta.nodeId;
     }
 
-    if(action.type == ACTIONTYPES.FETCH_SITE_FULFILLED) {
+    if(action.type == ACTIONTYPES.FETCH_SITE_FULFILLED || action.type == ACTIONTYPES.FETCH_WEB_FULFILLED) {
         const children = action.payload;
         if(children.length > 0) {
             const nodeState = state[currentNodeId];

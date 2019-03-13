@@ -29,3 +29,16 @@ export function fetch_site(nodeId: number, spHttpClient: any, url: string) : INo
         
     };
 }
+
+export function fetch_web(nodeId: number, spHttpClient: any, url: string) : INodeAction {
+    const service = new SiteService(spHttpClient);
+    return {
+        type: ACTIONTYPES.FETCH_WEB,
+        payload: service.getWebsFromSite(url).then((webs) => {
+            return webs;
+        }),
+        meta: {
+            nodeId: nodeId
+        }
+    };
+}

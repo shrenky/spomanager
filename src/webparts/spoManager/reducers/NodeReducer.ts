@@ -20,6 +20,7 @@ export function NodeReducer (state, action: INodeAction) {
                 expanded: !state.expanded
             };
         case ACTIONTYPES.FETCH_SITE_PENDING:
+        case ACTIONTYPES.FETCH_WEB_PENDING:
             return{
                 ...state,
                 isPending:true,
@@ -28,6 +29,7 @@ export function NodeReducer (state, action: INodeAction) {
                 childIds: []
             };
         case ACTIONTYPES.FETCH_SITE_FULFILLED:
+        case ACTIONTYPES.FETCH_WEB_FULFILLED:
             return{
                 ...state,
                 isPending:false,
@@ -36,6 +38,7 @@ export function NodeReducer (state, action: INodeAction) {
                 childIds: []
             };
         case ACTIONTYPES.FETCH_SITE_REJECTED:
+        case ACTIONTYPES.FETCH_WEB_REJECTED:
             return {
                 ...state,
                 isPending:false,
