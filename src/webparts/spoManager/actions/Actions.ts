@@ -9,6 +9,13 @@ export interface INodeAction {
     meta?: any;
 }
 
+export function init(root): INodeAction {
+    return {
+        type: ACTIONTYPES.INIT,
+        payload: root
+    };
+}
+
 export function expand_collapse_node(nodeId): INodeAction {
     return {
         type: ACTIONTYPES.EXPAND_COLLAPSE_NODE,

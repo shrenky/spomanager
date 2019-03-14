@@ -16,17 +16,33 @@ import * as strings from 'SpoManagerWebPartStrings';
 import SpoManager from './components/SpoManager';
 import { ISpoManagerProps } from './components/ISpoManagerProps';
 import { TreeUtils } from './utility/TreeUtils';
-import reducer from './reducers/TreeReducer';
+import reducer from './reducers/index';
+import * as ACTIONS from './actions/Actions';
 
 export interface ISpoManagerWebPartProps {
   scope: string;
 }
 
 export default class SpoManagerWebPart extends BaseClientSideWebPart<ISpoManagerWebPartProps> {
+  private needRefresh: boolean = false;
+
+  protected onPropertyPaneFieldChanged(propertyPath: string, oldValue: any, newValue: any){
+    if(propertyPath === 'scope' && oldValue != newValue) {
+      this.needRefresh = true;
+    }
+    else{
+      this.needRefresh = false;
+    }
+  }
+
+  protected renderCompleted() {
+
+  }
 
   public render(): void {
     const root = TreeUtils.initRoot(this.properties.scope, this.context);
     const store = createStore(reducer, root as any, applyMiddleware(thunk, promiseMiddleware, logger));
+    //store.dispatch(ACTIONS.init(root));
     const element: React.ReactElement<ISpoManagerProps > = React.createElement(
       SpoManager,
       {
@@ -37,6 +53,10 @@ export default class SpoManagerWebPart extends BaseClientSideWebPart<ISpoManager
     );
 
     ReactDom.render(element, this.domElement);
+    
+    if(this.needRefresh) {
+      window.location.reload();
+    }
   }
 
   protected onDispose(): void {
@@ -45,6 +65,10 @@ export default class SpoManagerWebPart extends BaseClientSideWebPart<ISpoManager
   
   protected get dataVersion(): Version {
     return Version.parse('1.0');
+  }
+
+  protected get disableReactivePropertyChanges() {
+    return true;
   }
 
   protected getPropertyPaneConfiguration(): IPropertyPaneConfiguration {
