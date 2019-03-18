@@ -54,9 +54,6 @@ export default class SpoManagerWebPart extends BaseClientSideWebPart<ISpoManager
 
     ReactDom.render(element, this.domElement);
     
-    if(this.needRefresh) {
-      window.location.reload();
-    }
   }
 
   protected onDispose(): void {

@@ -1,4 +1,5 @@
 import * as MockData from './MockData';
+import { INodeInfo } from '../interfaces/INodeInfo';
 
 export class MockDataService {
     /**
@@ -16,8 +17,10 @@ export class MockDataService {
      *    {"url":"https://contoso.sharepoint.com/sites/sales","title":"sales"}
      * ]
      */
-    public static getSites(): any[] {
-        return MockData.sites;
+    public static getSites(): Promise<INodeInfo[]> {
+        return new Promise<INodeInfo[]>((resolve,reject) => {
+			resolve(MockData.sites);
+		});
     }
 
     /**
@@ -25,22 +28,27 @@ export class MockDataService {
      * @param url site's url
      * return webs under site
      */
-    public static getWebsBySiteUrl(url:string): any[] {
+    public static getWebsBySiteUrl(url:string): Promise<INodeInfo[]> {
         if(url === 'https://contoso.sharepoint.com')
         {
-            return MockData.contosoWebs;
+            return new Promise<INodeInfo[]>((resolve,reject) => {
+                resolve(MockData.contosoWebs);
+            });
         }
         else if(url === 'https://contoso.sharepoint.com/sites/test')
         {
-            return MockData.testWebs;
+            return new Promise<INodeInfo[]>((resolve,reject) => {
+                resolve(MockData.testWebs);
+            });
         }
         else if(url ==='https://contoso.sharepoint.com/sites/sales')
         {
-            return MockData.saleWebs;
+            return new Promise<INodeInfo[]>((resolve,reject) => {
+                resolve(MockData.saleWebs);
+            });
         }
         else
         {
-            return [];
         }
     }
 

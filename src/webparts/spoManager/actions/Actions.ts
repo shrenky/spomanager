@@ -1,5 +1,7 @@
 import * as ACTIONTYPES from './ActionTypes';
 import { SiteService } from '../data/SiteService';
+import { Environment, EnvironmentType } from '@microsoft/sp-core-library';
+import { MockDataService } from '../data/MockDataService';
 
 export interface INodeAction {
     type: string;
@@ -27,7 +29,7 @@ export function fetch_site(nodeId: number, spHttpClient: any, url: string) : INo
     const service = new SiteService(spHttpClient);
     return {
         type: ACTIONTYPES.FETCH_SITE,
-        payload: service.getSitesStartingWith(url).then((sites) => {
+        payload:  Environment.type === EnvironmentType.Local ? MockDataService.getSites() : service.getSites(url).then((sites) => {
             return sites;
         }),
         meta: {
@@ -41,7 +43,7 @@ export function fetch_web(nodeId: number, spHttpClient: any, url: string) : INod
     const service = new SiteService(spHttpClient);
     return {
         type: ACTIONTYPES.FETCH_WEB,
-        payload: service.getWebsFromSite(url).then((webs) => {
+        payload: Environment.type === EnvironmentType.Local ? MockDataService.getWebsBySiteUrl(url) : service.getWebsBySiteUrl(url).then((webs) => {
             return webs;
         }),
         meta: {

@@ -1,10 +1,6 @@
 import { Text } 								from '@microsoft/sp-core-library';
 import { SPHttpClient, SPHttpClientResponse } 	from '@microsoft/sp-http';
-
-export interface INodeInfo {
-    url: string;
-    title: string;
-}
+import { INodeInfo } from '../interfaces/INodeInfo';
 
 export class SiteService {
 
@@ -103,9 +99,7 @@ export class SiteService {
 	 * Recursively searches for all site collections with a path which starts by the specified url
 	 * @param startingUrl : The url of the domain from which to find the site collections
 	 **************************************************************************************************/
-	public getSitesStartingWith(startingUrl: string): Promise<INodeInfo[]> {
-        console.log('in getSitesStartingWith');
-        console.log(startingUrl);
+	public getSites(startingUrl: string): Promise<INodeInfo[]> {
 		return new Promise<INodeInfo[]>((resolve,reject) => {
 			let queryProperties = Text.format("querytext='Path:{0}/* AND contentclass:STS_Site'&selectproperties='Title,Path'&trimduplicates=false&rowLimit=500&Properties='EnableDynamicGroups:true'", startingUrl);
             console.log(queryProperties);
@@ -125,7 +119,7 @@ export class SiteService {
 	 * Recursively searches for all site collections with a path which starts by the specified url
 	 * @param siteUrl : The url of the site collection from which to find the webs
 	 **************************************************************************************************/
-	public getWebsFromSite(siteUrl: string): Promise<INodeInfo[]> {
+	public getWebsBySiteUrl(siteUrl: string): Promise<INodeInfo[]> {
 		return new Promise<INodeInfo[]>((resolve,reject) => {
 			let queryProperties = Text.format("querytext='SPSiteUrl:{0} AND (contentclass:STS_Site OR contentclass:STS_Web)'&selectproperties='Title,Path'&trimduplicates=false&rowLimit=500&Properties='EnableDynamicGroups:true'", siteUrl);
 
