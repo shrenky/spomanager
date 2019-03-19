@@ -134,6 +134,12 @@ export class SiteService {
 		});	
 	}
 
+	public expandWeb(): Promise<any[]> {
+		return new Promise<any[]>((resolve, reject) => {
+			resolve([]);
+		});
+	}
+
 	/**************************************************************************************************
 	 * Recursively executes the specified search query using batches of 500 results until all results are fetched
 	 * @param queryParameters : The search query parameters following the "/_api/search/query?" part

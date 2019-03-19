@@ -45,6 +45,10 @@ export default (state = {}, action) => {
         }
     }
 
+    if(action.type == ACTIONTYPES.EXPAND_WEB) {
+        
+    }
+
     return {
         ...state,
         [currentNodeId]: NodeReducer(state[currentNodeId], action)

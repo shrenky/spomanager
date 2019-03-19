@@ -35,7 +35,6 @@ export function fetch_site(nodeId: number, spHttpClient: any, url: string) : INo
         meta: {
             nodeId: nodeId
         }
-        
     };
 }
 
@@ -46,6 +45,16 @@ export function fetch_web(nodeId: number, spHttpClient: any, url: string) : INod
         payload: Environment.type === EnvironmentType.Local ? MockDataService.getWebsBySiteUrl(url) : service.getWebsBySiteUrl(url).then((webs) => {
             return webs;
         }),
+        meta: {
+            nodeId: nodeId
+        }
+    };
+}
+
+export function expand_web(nodeId: number) {
+    return {
+        type: ACTIONTYPES.EXPAND_WEB,
+        payload: '',
         meta: {
             nodeId: nodeId
         }
