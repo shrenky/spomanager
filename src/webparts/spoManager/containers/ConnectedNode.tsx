@@ -31,7 +31,7 @@ export interface INodeDispatchProps {
     expand_collapse_node(id);
     fetch_site(id, client, url);
     fetch_web(id, client, url);
-    expand_web(id);
+    expand_web(id, client, url);
 }
 
 export class Node extends React.Component<INodeStateProps & INodeDispatchProps> {
@@ -87,7 +87,7 @@ export class Node extends React.Component<INodeStateProps & INodeDispatchProps> 
 
         if(this.props.type === NODE_TYPE.WEB) {
             if(!(isPending || isFulfilled || isRejected)) {
-                expand_web(id);
+                expand_web(id, client, url);
             }
         }
 

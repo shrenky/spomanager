@@ -51,10 +51,11 @@ export function fetch_web(nodeId: number, spHttpClient: any, url: string) : INod
     };
 }
 
-export function expand_web(nodeId: number) {
+export function expand_web(nodeId: number, spHttpClient: any, url: string) : INodeAction {
+    const service = new SiteService(spHttpClient);
     return {
         type: ACTIONTYPES.EXPAND_WEB,
-        payload: '',
+        payload: service.expandWeb(url),
         meta: {
             nodeId: nodeId
         }

@@ -1,6 +1,7 @@
 import { Text } 								from '@microsoft/sp-core-library';
 import { SPHttpClient, SPHttpClientResponse } 	from '@microsoft/sp-http';
 import { INodeInfo } from '../interfaces/INodeInfo';
+import { NODE_TYPE } from '../interfaces/NodeType';
 
 export class SiteService {
 
@@ -134,9 +135,20 @@ export class SiteService {
 		});	
 	}
 
-	public expandWeb(): Promise<any[]> {
-		return new Promise<any[]>((resolve, reject) => {
-			resolve([]);
+	public expandWeb(webUrl: string): Promise<INodeInfo[]> {
+		return new Promise<INodeInfo[]>((resolve, reject) => {
+			resolve([
+				{
+					url: webUrl,
+					title: 'Webs',
+					type: NODE_TYPE.WEBS
+				},
+				{
+					url: webUrl,
+					title: 'Lists',
+					type: NODE_TYPE.LISTS
+				}
+			]);
 		});
 	}
 
