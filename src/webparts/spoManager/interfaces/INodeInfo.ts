@@ -7,5 +7,8 @@ export interface INodeInfo {
 }
 
 export interface IListNodeInfo extends INodeInfo {
-    
+    parentWebUrl: string;
+    imageUrl: string;
+    itemCount: number;
+    isHidden: boolean;
 }

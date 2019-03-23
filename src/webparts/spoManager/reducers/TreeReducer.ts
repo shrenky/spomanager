@@ -71,7 +71,7 @@ export default (state = {}, action) => {
     }
 
     if(action.type == ACTIONTYPES.FETCH_SUB_WEBS_FULFILLED || 
-        ACTIONTYPES.FETCH_WEB_LISTS_FULFILLED) {
+        action.type == ACTIONTYPES.FETCH_WEB_LISTS_FULFILLED) {
         const children = action.payload;
         if(children.length > 0) {
             const nodeState = state[currentNodeId];

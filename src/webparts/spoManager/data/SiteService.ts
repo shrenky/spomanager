@@ -182,29 +182,32 @@ export class SiteService {
 
 	public fetch_web_lists(url: string) : Promise<IListNodeInfo[]> {
 		const listsInfoApi: string = `${url}/_api/lists`;
-		return new Promise<INodeInfo[]>((resolve, rejected) => {
+		return new Promise<IListNodeInfo[]>((resolve, rejected) => {
 			this.spHttpClient.get(listsInfoApi, SPHttpClient.configurations.v1)
 			.then((response: SPHttpClientResponse) => {
 				response.json().then((responseJSON) => {
 					console.log(responseJSON);
 					let listInfoNodes: IListNodeInfo[] = [];
 					const listInfoarr = responseJSON.value;
+					console.log(listInfoarr);
 					if(listInfoarr && listInfoarr.length > 0) {
 						listInfoarr.forEach(element => {
-							listInfoNodes.push(
-								{
-									title: element.Title,
-									url: element.ServerRelativeUrl,
-									type: NODE_TYPE.LIST
-								}
-							);
+							listInfoNodes.push({
+								title: element.Title,
+								url: '',
+								type: NODE_TYPE.LIST,
+								parentWebUrl: element.ParentWebUrl,
+								imageUrl: element.ImageUrl,
+								itemCount: element.ItemCount,
+								isHidden: element.Hidden
+							});
 						});
 					}
 					resolve(listInfoNodes);
 				})
 			})
 			.catch((error) => {
-				
+				rejected(error);
 			})
 		}
 
