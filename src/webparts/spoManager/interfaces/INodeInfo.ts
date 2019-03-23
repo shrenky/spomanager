@@ -5,3 +5,7 @@ export interface INodeInfo {
     title: string;
     type?: NODE_TYPE;
 }
+
+export interface IListNodeInfo extends INodeInfo {
+    
+}

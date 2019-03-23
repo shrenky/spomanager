@@ -1,7 +1,8 @@
 import { Text } 								from '@microsoft/sp-core-library';
 import { SPHttpClient, SPHttpClientResponse, SPHttpClientConfiguration } 	from '@microsoft/sp-http';
-import { INodeInfo } from '../interfaces/INodeInfo';
+import { INodeInfo, IListNodeInfo } from '../interfaces/INodeInfo';
 import { NODE_TYPE } from '../interfaces/NodeType';
+import { FETCH_LIST_REJECTED } from '../actions/ActionTypes';
 
 export class SiteService {
 
@@ -171,13 +172,43 @@ export class SiteService {
 						});
 					}
 					resolve(webInfoNodes);
-				})
-				
+				})				
 			})
 			.catch((error) => {
 				rejected(error);
 			})
 		})
+	}
+
+	public fetch_web_lists(url: string) : Promise<IListNodeInfo[]> {
+		const listsInfoApi: string = `${url}/_api/lists`;
+		return new Promise<INodeInfo[]>((resolve, rejected) => {
+			this.spHttpClient.get(listsInfoApi, SPHttpClient.configurations.v1)
+			.then((response: SPHttpClientResponse) => {
+				response.json().then((responseJSON) => {
+					console.log(responseJSON);
+					let listInfoNodes: IListNodeInfo[] = [];
+					const listInfoarr = responseJSON.value;
+					if(listInfoarr && listInfoarr.length > 0) {
+						listInfoarr.forEach(element => {
+							listInfoNodes.push(
+								{
+									title: element.Title,
+									url: element.ServerRelativeUrl,
+									type: NODE_TYPE.LIST
+								}
+							);
+						});
+					}
+					resolve(listInfoNodes);
+				})
+			})
+			.catch((error) => {
+				
+			})
+		}
+
+		);
 	}
 
 	/**************************************************************************************************

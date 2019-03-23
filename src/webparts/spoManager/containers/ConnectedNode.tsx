@@ -33,6 +33,7 @@ export interface INodeDispatchProps {
     fetch_web(id, client, url);
     expand_web(id, client, url);
     fetch_sub_webs(id, client, url);
+    fetch_web_lists(id, client, url);
 }
 
 export class Node extends React.Component<INodeStateProps & INodeDispatchProps> {
@@ -73,7 +74,7 @@ export class Node extends React.Component<INodeStateProps & INodeDispatchProps> 
     }
 
     private onExpandNode() {
-        const { client, fetch_site, fetch_web, expand_web, fetch_sub_webs, id, url, title, isPending, isFulfilled, isRejected, expand_collapse_node } = this.props;
+        const { client, fetch_site, fetch_web, expand_web, fetch_sub_webs, fetch_web_lists, id, url, title, isPending, isFulfilled, isRejected, expand_collapse_node } = this.props;
         if(this.props.type === NODE_TYPE.TENANT) {
             if(!(isPending || isFulfilled || isRejected)) {
                 fetch_site(id, client, url);
@@ -95,6 +96,12 @@ export class Node extends React.Component<INodeStateProps & INodeDispatchProps> 
         if(this.props.type === NODE_TYPE.WEBS) {
             if(!(isPending || isFulfilled || isRejected)) {
                 fetch_sub_webs(id, client, url);
+            }
+        }
+
+        if(this.props.type === NODE_TYPE.LISTS) {
+            if(!(isPending || isFulfilled || isRejected)) {
+                fetch_web_lists(id, client, url);
             }
         }
 

@@ -72,3 +72,14 @@ export function fetch_sub_webs(nodeId: number, spHttpClient: any, url: string): 
         }
     }
 }
+
+export function fetch_web_lists(nodeId: number, spHttpClient: any, url: string): INodeAction {
+    const service = new SiteService(spHttpClient);
+    return {
+        type: ACTIONTYPES.FETCH_WEB_LISTS,
+        payload: service.fetch_web_lists(url),
+        meta: {
+            nodeId: nodeId
+        }
+    }
+}
