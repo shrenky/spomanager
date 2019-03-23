@@ -1,5 +1,5 @@
 import { Text } 								from '@microsoft/sp-core-library';
-import { SPHttpClient, SPHttpClientResponse } 	from '@microsoft/sp-http';
+import { SPHttpClient, SPHttpClientResponse, SPHttpClientConfiguration } 	from '@microsoft/sp-http';
 import { INodeInfo } from '../interfaces/INodeInfo';
 import { NODE_TYPE } from '../interfaces/NodeType';
 
@@ -150,6 +150,34 @@ export class SiteService {
 				}
 			]);
 		});
+	}
+
+	public fetch_sub_webs(url: string): Promise<INodeInfo[]> {
+		const websInfoApi: string = `${url}/_api/site/rootWeb/webinfos`;
+		return new Promise<INodeInfo[]>((resolve, rejected) => {
+			this.spHttpClient.get(websInfoApi, SPHttpClient.configurations.v1)
+			.then((response:SPHttpClientResponse) => {
+				response.json().then((responseJSON) => {
+					console.log(responseJSON);
+					let webInfoNodes: INodeInfo[] = [];
+					const webInfoArr = responseJSON.value;
+					if(webInfoArr && webInfoArr.length > 0) {
+						webInfoArr.forEach(element => {
+							webInfoNodes.push({
+								title: element.Title,
+								url: element.ServerRelativeUrl,  //TODO construct absolute url
+								type: NODE_TYPE.WEB
+							});
+						});
+					}
+					resolve(webInfoNodes);
+				})
+				
+			})
+			.catch((error) => {
+				rejected(error);
+			})
+		})
 	}
 
 	/**************************************************************************************************

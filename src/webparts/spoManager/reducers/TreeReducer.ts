@@ -70,6 +70,29 @@ export default (state = {}, action) => {
         }
     }
 
+    if(action.type == ACTIONTYPES.FETCH_SUB_WEBS_FULFILLED) {
+        const children = action.payload;
+        if(children.length > 0) {
+            const nodeState = state[currentNodeId];
+            const childIdsArray = nodeState.childIds;
+            const data = createWebChildren(children);
+            const newNodes = data.nodes;
+            const ids = data.ids;
+            const newNodeState = {
+                ...nodeState,
+                isPending: false,
+                isFullfilled: true,
+                isRejected: false,
+                childIds: [...childIdsArray, ...ids]
+            };
+            return {
+                ...state,
+                [currentNodeId]: newNodeState,
+                ...newNodes
+            }
+        }
+    }
+
     return {
         ...state,
         [currentNodeId]: NodeReducer(state[currentNodeId], action)
@@ -103,6 +126,31 @@ export function createSiteNodes(nodeState, children) {
 }
 
 export function createWebChildren(children) {
+    let nodes = {};
+    let idArr = [];
+    children.forEach(child => {
+        const id = TreeUtils.getNextNodeId();
+        idArr.push(id);
+        nodes[id] = {
+            id: id,
+            type: child.type,
+            url: child.url,
+            title: child.title,
+            childIds: [],
+            expended: false,
+            isSelected: false,
+            isPending: false,
+            isFulfilled: false,
+            isRejected: false,
+            
+            properties: {}
+        };
+    });
+
+    return {nodes: nodes, ids: idArr};
+}
+
+export function creatSubWebs(children) {
     let nodes = {};
     let idArr = [];
     children.forEach(child => {

@@ -61,3 +61,14 @@ export function expand_web(nodeId: number, spHttpClient: any, url: string) : INo
         }
     };
 }
+
+export function fetch_sub_webs(nodeId: number, spHttpClient: any, url: string): INodeAction {
+    const service = new SiteService(spHttpClient);
+    return {
+        type: ACTIONTYPES.FETCH_SUB_WEBS,
+        payload: service.fetch_sub_webs(url),
+        meta: {
+            nodeId: nodeId
+        }
+    }
+}
