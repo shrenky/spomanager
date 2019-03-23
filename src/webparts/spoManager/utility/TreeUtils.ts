@@ -1,4 +1,5 @@
 import { NODE_TYPE } from "../interfaces/NodeType";
+import * as constants from './Constants';
 
 export class TreeUtils {
     public static nextNodeId = 1;
@@ -14,6 +15,7 @@ export class TreeUtils {
                 id: 1,
                 type: scope == 'Tenant' ? NODE_TYPE.TENANT : scope == 'Site' ? NODE_TYPE.SITE : 'Web',
                 url: url,
+                imageUrl: constants.SITEICONURL,
                 title: title,
                 childIds: [],
                 expanded: false,

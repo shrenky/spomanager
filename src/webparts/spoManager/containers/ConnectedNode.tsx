@@ -11,11 +11,13 @@ import {
 import Styles from './TreeNode.module.scss';
 import { NODE_TYPE } from '../interfaces/NodeType';
 import * as actions from '../actions/Actions';
+import * as constants from '../utility/Constants';
 
 export interface INodeStateProps {
     id: number;
     type: NODE_TYPE;
     url: string;
+    imageUrl: string;
     title: string;
     childIds: number[];
     expanded: boolean;
@@ -37,9 +39,6 @@ export interface INodeDispatchProps {
 }
 
 export class Node extends React.Component<INodeStateProps & INodeDispatchProps> {
-    private readonly COLLAPSEICONNAME: string = 'CollapseContentSingle';
-    private readonly ExploreICONNAME: string = 'ExploreContentSingle';
-    private readonly SITEICONURL: string = "/_layouts/15/images/SharePointFoundation16.png";
 
     constructor(props) {
         super(props);
@@ -54,12 +53,12 @@ export class Node extends React.Component<INodeStateProps & INodeDispatchProps> 
     }
 
     public render() {
-        const {id, childIds, url, title, expanded, isSelected } = this.props;
+        const {id, childIds, url, imageUrl, title, expanded, isSelected } = this.props;
         return (
             <div>
-                <Icon className={Styles.FileTypeIcon} iconName={ expanded ?  this.COLLAPSEICONNAME: this.ExploreICONNAME } onClick={this.onExpandNode}/>
+                <Icon className={Styles.FileTypeIcon} iconName={ expanded ?  constants.COLLAPSEICONNAME: constants.ExploreICONNAME } onClick={this.onExpandNode}/>
                 {'-'}
-                <img className={Styles.FileTypeIconIcon} alt="" src={this.SITEICONURL}></img>
+                <img className={Styles.FileTypeIconIcon} alt="" src={imageUrl}></img>
                 <span className={Styles.NodeTitle}>{title}</span>
                 <div className={expanded ? Styles.NodeExpanded : Styles.NodeCollapsed}>
                     {

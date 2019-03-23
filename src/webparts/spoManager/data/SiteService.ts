@@ -2,7 +2,7 @@ import { Text } 								from '@microsoft/sp-core-library';
 import { SPHttpClient, SPHttpClientResponse, SPHttpClientConfiguration } 	from '@microsoft/sp-http';
 import { INodeInfo, IListNodeInfo } from '../interfaces/INodeInfo';
 import { NODE_TYPE } from '../interfaces/NodeType';
-import { FETCH_LIST_REJECTED } from '../actions/ActionTypes';
+import * as constants from '../utility/Constants';
 
 export class SiteService {
 
@@ -141,11 +141,13 @@ export class SiteService {
 			resolve([
 				{
 					url: webUrl,
+					imageUrl: constants.SITEICONURL,
 					title: 'Webs',
 					type: NODE_TYPE.WEBS
 				},
 				{
 					url: webUrl,
+					imageUrl: constants.SITEICONURL,
 					title: 'Lists',
 					type: NODE_TYPE.LISTS
 				}
@@ -167,6 +169,7 @@ export class SiteService {
 							webInfoNodes.push({
 								title: element.Title,
 								url: element.ServerRelativeUrl,  //TODO construct absolute url
+								imageUrl: constants.SITEICONURL,
 								type: NODE_TYPE.WEB
 							});
 						});
@@ -255,7 +258,11 @@ export class SiteService {
 				titleIndex = result.Cells.indexOf(titleCell);
 			}
 
-			webBasicInfo.push({url: result.Cells[pathIndex].Value.toLowerCase().trim(), title:result.Cells[titleIndex].Value.toLowerCase().trim()});
+			webBasicInfo.push({
+				url: result.Cells[pathIndex].Value.toLowerCase().trim(), 
+				title:result.Cells[titleIndex].Value.toLowerCase().trim(),
+				imageUrl: constants.SITEICONURL
+			});
 		}
 		return webBasicInfo;
 	}
