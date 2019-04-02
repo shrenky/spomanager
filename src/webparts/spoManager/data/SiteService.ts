@@ -142,14 +142,86 @@ export class SiteService {
 				{
 					url: webUrl,
 					imageUrl: constants.SITEICONURL,
-					title: 'Webs',
-					type: NODE_TYPE.WEBS
+					title: 'Alerts',
+					type: NODE_TYPE.WEB_ALERTS
+				},
+				{
+					url: webUrl,
+					imageUrl: constants.SITEICONURL,
+					title: 'AllProperties',
+					type: NODE_TYPE.WEB_ALERTS
+				},
+				{
+					url: webUrl,
+					imageUrl: constants.SITEICONURL,
+					title: 'ContentTypes',
+					type: NODE_TYPE.WEB_CONTENTTYPES
+				},
+				{
+					url: webUrl,
+					imageUrl: constants.SITEICONURL,
+					title: 'EventReceivers',
+					type: NODE_TYPE.WEB_EVENTRECEIVERS
+				},
+				{
+					url: webUrl,
+					imageUrl: constants.SITEICONURL,
+					title: 'Features',
+					type: NODE_TYPE.WEB_FEATURES
+				},
+				{
+					url: webUrl,
+					imageUrl: constants.SITEICONURL,
+					title: 'Fields',
+					type: NODE_TYPE.WEB_FIELDS
+				},
+				{
+					url: webUrl,
+					imageUrl: constants.SITEICONURL,
+					title: 'Groups',
+					type: NODE_TYPE.WEB_GROUPS
+				},
+				{
+					url: webUrl,
+					imageUrl: constants.SITEICONURL,
+					title: 'ListTemplates',
+					type: NODE_TYPE.WEB_LISTTEMPLATES
 				},
 				{
 					url: webUrl,
 					imageUrl: constants.SITEICONURL,
 					title: 'Lists',
 					type: NODE_TYPE.LISTS
+				},
+				{
+					url: webUrl,
+					imageUrl: constants.SITEICONURL,
+					title: 'Properties',
+					type: NODE_TYPE.WEB_PROPERTIES
+				},
+				{
+					url: webUrl,
+					imageUrl: constants.SITEICONURL,
+					title: 'RootFolder',
+					type: NODE_TYPE.WEB_ROOTFOLDER
+				},
+				{
+					url: webUrl,
+					imageUrl: constants.SITEICONURL,
+					title: 'Solutions',
+					type: NODE_TYPE.WEB_SOLUTIONS
+				},
+				{
+					url: webUrl,
+					imageUrl: constants.SITEICONURL,
+					title: 'Users',
+					type: NODE_TYPE.WEB_USERS
+				},
+				{
+					url: webUrl,
+					imageUrl: constants.SITEICONURL,
+					title: 'Webs',
+					type: NODE_TYPE.WEBS
 				}
 			]);
 		});
